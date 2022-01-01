@@ -17,10 +17,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
-    CategoryDb().getCategories().then((value) {
-      print('Categories get');
-      print(value.toString());
-    });
+    CategoryDB().refreshUI();
     super.initState();
   }
 
@@ -32,7 +29,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
           controller: _tabController,
           labelColor: Colors.black,
           unselectedLabelColor: Colors.grey,
-          tabs: [
+          tabs: const [
             Tab(
               text: 'INCOME',
             ),
