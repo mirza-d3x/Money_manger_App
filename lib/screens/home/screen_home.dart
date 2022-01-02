@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:money_manager/screens/category/category_add_popup.dart';
 import 'package:money_manager/screens/category/screen_category.dart';
 import 'package:money_manager/screens/home/widgets/bottom_navigation.dart';
+import 'package:money_manager/screens/transaction/add_transaction/screen_add_transaction.dart';
 import 'package:money_manager/screens/transaction/screen_transaction.dart';
 
 class ScreenHome extends StatelessWidget {
   const ScreenHome({Key? key}) : super(key: key);
 
   static ValueNotifier<int> selectedIndexNotifier = ValueNotifier(0);
-  final _pages = const [ScreenTransaction(), ScreenCategory()];
+  final _pages = const [
+    ScreenTransaction(),
+    ScreenCategory(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +33,7 @@ class ScreenHome extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (selectedIndexNotifier.value == 0) {
+            Navigator.of(context).pushNamed(ScreenAddTransaction.routeName);
             print('Add Transaction');
           } else {
             print('Add Category');
