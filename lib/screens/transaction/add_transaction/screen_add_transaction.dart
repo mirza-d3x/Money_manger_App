@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/models/category/category_model.dart';
 
 class ScreenAddTransaction extends StatelessWidget {
   static const routeName = 'add_transaction';
@@ -25,11 +26,11 @@ class ScreenAddTransaction extends StatelessWidget {
                 child: TextFormField(
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                      hintText: 'Purpose',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      ),
+                    hintText: 'Purpose',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                 ),
               ),
               Padding(
@@ -41,9 +42,38 @@ class ScreenAddTransaction extends StatelessWidget {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-
                   ),
                 ),
+              ),
+              TextButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.calendar_today),
+                label: const Text('Select Date'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    children: [
+                      Radio(
+                        value: CategoryType.income,
+                        groupValue: CategoryType.income,
+                        onChanged: (newValue) {},
+                      ),
+                      Text('Income')
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Radio(
+                        value: CategoryType.expense,
+                        groupValue: CategoryType.income,
+                        onChanged: (newValue) {},
+                      ),
+                      const Text('Expense')
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
