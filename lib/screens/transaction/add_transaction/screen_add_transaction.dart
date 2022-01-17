@@ -14,7 +14,13 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   DateTime? _selectedDate;
   CategoryType? _selectedCategorytype;
   CategoryModel? _selectedCategoryModel;
+  
 
+  @override
+  void initState() {
+     _selectedCategorytype = CategoryType.income;
+    super.initState();
+  }
   /*
   Purpose of Transaction
   Date of transaction
@@ -93,25 +99,34 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                     children: [
                       Radio(
                         value: CategoryType.income,
-                        groupValue: CategoryType.income,
-                        onChanged: (newValue) {},
+                        groupValue: _selectedCategorytype,
+                        onChanged: (newValue) {
+                          setState(() {
+                            _selectedCategorytype  = CategoryType.income;
+                          });
+                        },
                       ),
-                      Text('Income')
+                   const   Text('Income')
                     ],
                   ),
                   Row(
                     children: [
                       Radio(
                         value: CategoryType.expense,
-                        groupValue: CategoryType.income,
-                        onChanged: (newValue) {},
+                        groupValue:_selectedCategorytype,
+                        onChanged: (newValue) {
+                         setState(() {
+                            _selectedCategorytype = CategoryType.expense;
+                         });
+                        //  print(value);
+                        },
                       ),
                       const Text('Expense')
                     ],
                   ),
                 ],
               ),
-              // Categpry Type
+              // Categpry Type DropDown Menu
               DropdownButton(
                 hint: const Text('Select Category'),
                 items: CategoryDB.instance.incomeCategoryListListener.value
