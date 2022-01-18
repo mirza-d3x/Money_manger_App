@@ -14,13 +14,15 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   DateTime? _selectedDate;
   CategoryType? _selectedCategorytype;
   CategoryModel? _selectedCategoryModel;
-  
+
+  String? _categoryID;
 
   @override
   void initState() {
-     _selectedCategorytype = CategoryType.income;
+    _selectedCategorytype = CategoryType.income;
     super.initState();
   }
+
   /*
   Purpose of Transaction
   Date of transaction
@@ -102,23 +104,25 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                         groupValue: _selectedCategorytype,
                         onChanged: (newValue) {
                           setState(() {
-                            _selectedCategorytype  = CategoryType.income;
+                            _selectedCategorytype = CategoryType.income;
+                            _categoryID = null;
                           });
                         },
                       ),
-                   const   Text('Income')
+                      const Text('Income')
                     ],
                   ),
                   Row(
                     children: [
                       Radio(
                         value: CategoryType.expense,
-                        groupValue:_selectedCategorytype,
+                        groupValue: _selectedCategorytype,
                         onChanged: (newValue) {
-                         setState(() {
+                          setState(() {
                             _selectedCategorytype = CategoryType.expense;
-                         });
-                        //  print(value);
+                            _categoryID = null;
+                          });
+                          //  print(value);
                         },
                       ),
                       const Text('Expense')
@@ -127,9 +131,13 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 ],
               ),
               // Categpry Type DropDown Menu
-              DropdownButton(
+              DropdownButton<String>(
                 hint: const Text('Select Category'),
-                items: CategoryDB.instance.incomeCategoryListListener.value
+                value: _categoryID,
+                items: (_selectedCategorytype == CategoryType.income
+                        ? CategoryDB().incomeCategoryListListener
+                        : CategoryDB().expenseCategoryListListener)
+                    .value
                     .map((e) {
                   return DropdownMenuItem(
                     value: e.id,
@@ -138,12 +146,16 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 }).toList(),
                 onChanged: (selectedValue) {
                   print(selectedValue);
+
+                  setState(() {
+                    _categoryID = selectedValue;
+                  });
                 },
               ),
               // Submit Button
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Submit'),
+                child: const Text('Submit'),
               ),
             ],
           ),
