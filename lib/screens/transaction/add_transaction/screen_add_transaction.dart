@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:money_manager/db/category/category_db.dart';
+import 'package:money_manager/db/transaction/transaction_db.dart';
 import 'package:money_manager/models/category/category_model.dart';
+import 'package:money_manager/models/transaction/transaction_model.dart';
 
 class ScreenAddTransaction extends StatefulWidget {
   static const routeName = 'add_transaction';
@@ -16,6 +20,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   CategoryModel? _selectedCategoryModel;
 
   String? _categoryID;
+
+  final _purposeTextEditingController = TextEditingController();
+  final _amountTextEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -42,6 +49,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
+                  controller: _purposeTextEditingController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     hintText: 'Purpose',
@@ -55,6 +63,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
+                  controller: _amountTextEditingController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: 'Amount',
@@ -142,10 +151,13 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                   return DropdownMenuItem(
                     value: e.id,
                     child: Text(e.name),
+                    onTap: () {
+                      _selectedCategoryModel = e;
+                    },
                   );
                 }).toList(),
                 onChanged: (selectedValue) {
-                  print(selectedValue);
+                  // print(selectedValue);
 
                   setState(() {
                     _categoryID = selectedValue;
@@ -154,7 +166,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               ),
               // Submit Button
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  addTransaction();
+                },
                 child: const Text('Submit'),
               ),
             ],
@@ -162,5 +176,42 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
         ),
       ),
     );
+  }
+
+  Future<void> addTransaction() async {
+    final _purposText = _purposeTextEditingController.text;
+    final _amountText = _amountTextEditingController.text;
+
+    if (_purposText.isEmpty) {
+      return;
+    }
+    if (_amountText.isEmpty) {
+      return;
+    }
+    if (_selectedCategoryModel == null) {
+      return;
+    }
+    if (_selectedDate == null) {
+      return;
+    }
+
+    final _parsedAmount = double.tryParse(_amountText);
+    if (_parsedAmount == null) {
+      return;
+    }
+
+    // _selectedDate;
+    // _selectedCategorytype; 
+    // _categoryID;
+
+   final _model = TransactionModel(
+      purpose: _purposText,
+      amount: _parsedAmount,
+      date: _selectedDate!,
+      type: _selectedCategorytype!,
+      category: _selectedCategoryModel!,
+    );
+
+    TransactionDB.instance.addTransaction(_model);
   }
 }

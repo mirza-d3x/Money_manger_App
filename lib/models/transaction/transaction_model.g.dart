@@ -8,7 +8,7 @@ part of 'transaction_model.dart';
 
 class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
   TransactionModel read(BinaryReader reader) {
@@ -22,13 +22,13 @@ class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
       date: fields[2] as DateTime,
       type: fields[3] as CategoryType,
       category: fields[4] as CategoryModel,
-    );
+    )..id = fields[5] as String?;
   }
 
   @override
   void write(BinaryWriter writer, TransactionModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.purpose)
       ..writeByte(1)
@@ -38,7 +38,9 @@ class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
       ..writeByte(3)
       ..write(obj.type)
       ..writeByte(4)
-      ..write(obj.category);
+      ..write(obj.category)
+      ..writeByte(5)
+      ..write(obj.id);
   }
 
   @override
