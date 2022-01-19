@@ -20,7 +20,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
     CategoryDB().refreshUI();
     super.initState();
   }
-
+// Category screen
   @override
   Widget build(BuildContext context) {
     return Column(

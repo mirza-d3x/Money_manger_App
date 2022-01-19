@@ -5,6 +5,7 @@ import 'package:money_manager/models/category/category_model.dart';
 class IncomeCategoryList extends StatelessWidget {
   const IncomeCategoryList({Key? key}) : super(key: key);
 
+// Income Category List
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(

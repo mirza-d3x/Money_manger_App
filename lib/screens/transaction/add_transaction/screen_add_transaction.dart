@@ -178,6 +178,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     );
   }
 
+  // add Transaction
   Future<void> addTransaction() async {
     final _purposText = _purposeTextEditingController.text;
     final _amountText = _amountTextEditingController.text;
@@ -201,18 +202,19 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     }
 
     // _selectedDate;
-    // _selectedCategorytype; 
+    // _selectedCategorytype;
     // _categoryID;
 
-   final _model = TransactionModel(
+    final _model = TransactionModel(
       purpose: _purposText,
       amount: _parsedAmount,
       date: _selectedDate!,
       type: _selectedCategorytype!,
       category: _selectedCategoryModel!,
     );
-   await TransactionDB.instance.addTransaction(_model);
-   Navigator.of(context).pop();
-   TransactionDB.instance.refresh();
+
+    await TransactionDB.instance.addTransaction(_model);
+    Navigator.of(context).pop();
+    TransactionDB.instance.refresh();
   }
 }

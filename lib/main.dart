@@ -5,6 +5,8 @@ import 'package:money_manager/models/transaction/transaction_model.dart';
 import 'package:money_manager/screens/home/screen_home.dart';
 import 'package:money_manager/screens/transaction/add_transaction/screen_add_transaction.dart';
 
+
+// Flutter sample project
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();

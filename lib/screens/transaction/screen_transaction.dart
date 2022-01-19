@@ -20,6 +20,7 @@ class ScreenTransaction extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           itemBuilder: (ctx, index) {
             final _value = newList[index];
+            // slidable function to see delete button when swipe transaction
             return Slidable(
               key: Key(_value.id!),
               startActionPane: ActionPane(
@@ -37,6 +38,7 @@ class ScreenTransaction extends StatelessWidget {
               child: Card(
                 elevation: 0,
                 child: ListTile(
+                  // Date
                   leading: CircleAvatar(
                     radius: 50,
                     child: Text(
@@ -48,7 +50,9 @@ class ScreenTransaction extends StatelessWidget {
                         ? Colors.green
                         : Colors.red,
                   ),
+                  // Amount
                   title: Text('RS ${_value.amount}'),
+                  // category
                   subtitle: Text(_value.category.name),
                 ),
               ),
@@ -64,7 +68,7 @@ class ScreenTransaction extends StatelessWidget {
       },
     );
   }
-
+// parse date. change date format
   String parseDate(DateTime date) {
     final _date = DateFormat.MMMd().format(date);
     final _splitedDate = _date.split(' ');

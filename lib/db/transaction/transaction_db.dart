@@ -25,12 +25,14 @@ class TransactionDB implements TransactionDbFunction {
   ValueNotifier<List<TransactionModel>> transactionListNotifier =
       ValueNotifier([]);
 
+  // Add Transaction
   @override
   Future<void> addTransaction(TransactionModel obj) async {
     final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
     await _db.put(obj.id, obj);
   }
 
+  // Refresh Ui
   Future<void> refresh() async {
     final _list = await getAllTransaction();
     _list.sort((first, second) => second.date.compareTo(first.date));
@@ -39,12 +41,14 @@ class TransactionDB implements TransactionDbFunction {
     transactionListNotifier.notifyListeners();
   }
 
+  // display transaction as List
   @override
   Future<List<TransactionModel>> getAllTransaction() async {
     final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
     return _db.values.toList();
   }
 
+  // Delete Transaction from delete
   @override
   Future<void> deleteTransaction(String id) async {
     final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
