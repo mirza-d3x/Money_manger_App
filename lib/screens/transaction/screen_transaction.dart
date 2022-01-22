@@ -24,7 +24,7 @@ class ScreenTransaction extends StatelessWidget {
             return Slidable(
               key: Key(_value.id!),
               startActionPane: ActionPane(
-                motion: ScrollMotion(),
+                motion: const ScrollMotion(),
                 children: [
                   SlidableAction(
                     onPressed: (ctx) {
@@ -68,6 +68,7 @@ class ScreenTransaction extends StatelessWidget {
       },
     );
   }
+
 // parse date. change date format
   String parseDate(DateTime date) {
     final _date = DateFormat.MMMd().format(date);

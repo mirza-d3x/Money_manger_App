@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, unnecessary_cast, invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
 import 'package:money_manager/db/category/category_db.dart';
 import 'package:money_manager/models/category/category_model.dart';

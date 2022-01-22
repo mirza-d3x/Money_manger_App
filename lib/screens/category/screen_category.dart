@@ -20,6 +20,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
     CategoryDB().refreshUI();
     super.initState();
   }
+
 // Category screen
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
           ],
         ),
         Expanded(
-          child: TabBarView(controller: _tabController, children: [
+          child: TabBarView(controller: _tabController, children: const [
             IncomeCategoryList(),
             ExpenseCategoryList(),
           ]),

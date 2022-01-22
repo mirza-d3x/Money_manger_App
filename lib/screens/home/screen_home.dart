@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:money_manager/screens/category/category_add_popup.dart';
 import 'package:money_manager/screens/category/screen_category.dart';
@@ -18,7 +20,7 @@ class ScreenHome extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text('MONEY MANAGER'),
+        title: const Text('MONEY MANAGER'),
         centerTitle: true,
       ),
       bottomNavigationBar: const MoneyManagerBottomNavigatoion(),
@@ -47,7 +49,7 @@ class ScreenHome extends StatelessWidget {
             // CategoryDb().insertCategory(_sample);
           }
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

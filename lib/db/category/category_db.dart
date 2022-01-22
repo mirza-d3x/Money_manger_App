@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, duplicate_ignore
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
@@ -11,6 +11,7 @@ abstract class CategoryDbFunctions {
   Future<void> deleteCategory(String categoryID);
 }
 
+// ignore: constant_identifier_names
 const CATEGORY_DB_NAME = 'category-database';
 
 class CategoryDB implements CategoryDbFunctions {
@@ -30,7 +31,7 @@ class CategoryDB implements CategoryDbFunctions {
   Future<void> insertCategory(CategoryModel value) async {
     // add
     final _categoryDB = await Hive.openBox<CategoryModel>(CATEGORY_DB_NAME);
-    await _categoryDB.put(value.id,value);
+    await _categoryDB.put(value.id, value);
     refreshUI();
   }
 
@@ -58,6 +59,7 @@ class CategoryDB implements CategoryDbFunctions {
       },
     );
 
+    // ignore: invalid_use_of_visible_for_testing_member
     incomeCategoryListListener.notifyListeners();
     expenseCategoryListListener.notifyListeners();
   }
