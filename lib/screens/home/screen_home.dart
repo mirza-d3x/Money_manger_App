@@ -41,15 +41,10 @@ class ScreenHome extends StatelessWidget {
           } else {
             print('Add Category');
             showCategoryAddPopup(context);
-            // final _sample = CategoryModel(
-            //   id: DateTime.now().microsecondsSinceEpoch.toString(),
-            //   name: 'Travel',
-            //   type: CategoryType.expense,
-            // );
-            // CategoryDb().insertCategory(_sample);
           }
         },
         child: const Icon(Icons.add),
+        backgroundColor: Colors.blue,
       ),
     );
   }

@@ -34,9 +34,7 @@ class MyApp extends StatelessWidget {
         // debug banner remove
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primaryColor: Colors.blue),
         home: const ScreenHome(),
         routes: {
           ScreenAddTransaction.routeName: (ctx) => const ScreenAddTransaction(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
 import 'package:money_manager/db/category/category_db.dart';
 import 'package:money_manager/db/transaction/transaction_db.dart';
@@ -44,6 +45,11 @@ class ScreenTransaction extends StatelessWidget {
                     child: Text(
                       parseDate(_value.date),
                       textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontFamily: 'Raleway',
+                      ),
                     ),
                     // change color to find income and expense easily
                     backgroundColor: _value.type == CategoryType.income
@@ -51,9 +57,28 @@ class ScreenTransaction extends StatelessWidget {
                         : Colors.red,
                   ),
                   // Amount
-                  title: Text('RS ${_value.amount}'),
+                  title: Text(
+                    'RS ${_value.amount}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      fontFamily: 'Raleway',
+                    ),
+                  ),
                   // category
-                  subtitle: Text(_value.category.name),
+                  subtitle: Text(
+                    _value.category.name,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        fontFamily: 'RaleWay'),
+                  ),
+                  tileColor: Colors.lightBlueAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
                 ),
               ),
             );
