@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
 import 'package:money_manager/db/category/category_db.dart';
 import 'package:money_manager/db/transaction/transaction_db.dart';

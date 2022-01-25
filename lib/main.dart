@@ -33,8 +33,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         // debug banner remove
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(primaryColor: Colors.blue),
+        title: 'Money Manager',
+        theme: ThemeData(
+          primaryColor: Colors.blue,
+        ),
         home: const ScreenHome(),
         routes: {
           ScreenAddTransaction.routeName: (ctx) => const ScreenAddTransaction(),
